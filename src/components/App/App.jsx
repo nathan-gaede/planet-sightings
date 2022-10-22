@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import PlanetList from '../PlanetList/PlanetList';
+import PlanetDetail from '../PlanetDetail/PlanetDetail';
 
 import './App.css';
 
@@ -59,6 +60,12 @@ function App() {
             path="/user"
           >
             <PlanetList />
+
+            
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="detail/:id">
+            <PlanetDetail />
           </ProtectedRoute>
 
           <ProtectedRoute
