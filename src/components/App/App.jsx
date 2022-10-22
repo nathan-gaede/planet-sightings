@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import PlanetList from '../PlanetList/PlanetList';
 
 import './App.css';
 
@@ -57,7 +58,7 @@ function App() {
             exact
             path="/user"
           >
-            <UserPage />
+            <PlanetList />
           </ProtectedRoute>
 
           <ProtectedRoute
