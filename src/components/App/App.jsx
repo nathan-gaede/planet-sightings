@@ -64,9 +64,9 @@ function App() {
             
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="detail/:id">
+          <Route exact path="/detail/:id">
             <PlanetDetail />
-          </ProtectedRoute>
+          </Route>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage

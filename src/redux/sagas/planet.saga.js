@@ -16,10 +16,10 @@ function* fetchAllPlanets() {
     }
 }
 
-function* fetchPlanetDetails(selectedPlanet) {
+function* fetchPlanetDetails(action) {
     try {
-        console.log(selectedPlanet.payload.id);
-        const planet = yield axios.get(`/api/planets/${selectedPlanet.payload.id}`);
+        console.log(action.payload.id);
+        const planet = yield axios.get(`/api/planets/${action.payload}`);
         console.log('get detail', planet.data);
         yield put ({ type: 'SET_PLANET_DETAILS', payload: planet.data });
     }catch {

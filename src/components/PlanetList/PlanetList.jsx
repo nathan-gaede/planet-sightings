@@ -14,9 +14,12 @@ function PlanetList() {
     }, []);
 
     const displayDetails = (planetToDisplay) => {
-        console.log('fetch',planetToDisplay);
-        dispatch ({ type: 'FETCH_PLANET_DETAILS', payload: planetToDisplay });
-        history.push(`/detail/:${planetToDisplay.id}`);
+        //can remove the next two lines of code once 
+        //the useEffect on the PlanetDetail is working.
+        // console.log('fetch',planetToDisplay);
+        // dispatch ({ type: 'FETCH_PLANET_DETAILS', payload: planetToDisplay });
+        history.push(`/detail/${planetToDisplay.id}`);
+        
     };
 
 

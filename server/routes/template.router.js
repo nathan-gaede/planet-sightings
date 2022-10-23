@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   console.log(req.params.id);
-  const queryText = `SELECT * FROM "planet" WHERE "id" = $1;`;
+  const queryText = `SELECT * FROM "planet" WHERE "id" = $1`;
   pool.query(queryText,[req.params.id])
   .then((result) => {
     console.log('SELECT success!', result);
