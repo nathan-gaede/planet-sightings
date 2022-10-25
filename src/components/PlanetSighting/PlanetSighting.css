@@ -1,0 +1,10 @@
+body {
+background-image: url("/public/images/background.jpg");
+background-size: contain;
+background-repeat: no-repeat;
+background-size: 100%;
+}
+
+h2 {
+    color: white;
+}
