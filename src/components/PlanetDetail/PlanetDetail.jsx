@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function PlanetDetail() {
     const planet = useSelector(store => store.planet.selectedPlanet);
     const { id } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PLANET_DETAILS', payload: id});
@@ -13,7 +15,7 @@ function PlanetDetail() {
 
     const LogSighting=(event) => {
         dispatch ({ type: 'LOG_PLANET_SIGHTING', payload: planet.id});
-        // history.push('/log');
+        history.push('/sighting');
     };
     return (
         <div>

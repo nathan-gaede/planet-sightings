@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import PlanetList from '../PlanetList/PlanetList';
 import PlanetDetail from '../PlanetDetail/PlanetDetail';
+import PlanetSighting from '../PlanetSighting/PlanetSighting';
 
 import './App.css';
 
@@ -64,9 +65,13 @@ function App() {
             
           </ProtectedRoute>
 
-          <Route exact path="/detail/:id">
+          <ProtectedRoute exact path="/detail/:id">
             <PlanetDetail />
-          </Route>
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/sighting">
+            <PlanetSighting />
+          </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
