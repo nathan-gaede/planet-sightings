@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { actionChannel } from '@redux-saga/core/effects';
 
 function PlanetDetail() {
     const planet = useSelector(store => store.planet.selectedPlanet);
@@ -11,6 +10,11 @@ function PlanetDetail() {
     useEffect(() => {
         dispatch({ type: 'FETCH_PLANET_DETAILS', payload: id});
     }, [id])
+
+    const LogSighting=(event) => {
+        dispatch ({ type: 'LOG_PLANET_SIGHTING', payload: planet.id});
+        // history.push('/log');
+    };
     return (
         <div>
             <h2>{planet.name}</h2>
@@ -21,6 +25,7 @@ function PlanetDetail() {
             <h2>Visible without Telescope: {planet.visible_without_telescope}</h2>
             <h2>Minutes from Earth at Speed of Light: {planet.travel_time_speed_of_light_minutes}</h2>
             <h2>Time Required to Drive in Years: {planet.travel_time_driving_years}</h2>
+            <button value={planet.id} onClick={() => LogSighting(event)}>Log Planet Sighting</button>
            
             
             

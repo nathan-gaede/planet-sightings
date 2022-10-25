@@ -16,6 +16,8 @@ const selectedPlanet = (state = {}, action) => {
     }
 }
 
+
+
 export default combineReducers({
     //when using useSelector, use store.planet.selectedPlanet
     planetList,

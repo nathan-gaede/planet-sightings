@@ -4,6 +4,7 @@ import axios from 'axios';
 function* planetSaga() {
     yield takeLatest('FETCH_PLANET_LIST', fetchAllPlanets);
     yield takeLatest('FETCH_PLANET_DETAILS', fetchPlanetDetails);
+    yield takeLatest('LOG_PLANET_SIGHTING', logPlanetSighting);
 }
 
 function* fetchAllPlanets() {
@@ -24,6 +25,16 @@ function* fetchPlanetDetails(action) {
         yield put ({ type: 'SET_PLANET_DETAILS', payload: planet.data });
     }catch {
         console.log('get details error');
+    }
+}
+
+function* logPlanetSighting(action) {
+    try {
+        yield axios.post('/api/planets',{planet_id:action.payload})
+        console.log(action.payload);
+    }catch(e) {
+        console.log(e);
+        alert('Something went wrong POST')
     }
 }
 

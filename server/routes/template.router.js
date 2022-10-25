@@ -37,6 +37,21 @@ router.get('/:id', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
+  console.log('POST route');
+  console.log(req.body);
+  console.log('is authenticated?', req.isAuthenticated());
+  if(req.isAuthenticated()) {
+    const queryText = `INSERT INTO "sighting" ("planet_id", "user_id")
+                        VALUES ($1, $2) RETURNING "id";`;
+      pool.query(queryText, [req.body.planet_id, req.user.id]).then((result) => {
+        res.sendStatus(201);
+      }).catch((e) => {
+        console.log(e);
+        res.sendStatus(500);
+      });
+  }else {
+    res.sendStatus(403);
+  }
 });
 
 module.exports = router;
