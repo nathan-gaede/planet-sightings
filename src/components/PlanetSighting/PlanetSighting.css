@@ -1,10 +1,15 @@
-body {
-background-image: url("/public/images/background.jpg");
-background-size: contain;
-background-repeat: no-repeat;
-background-size: 100%;
+/* body, html {
+    height: 100%
 }
 
-h2 {
-    color: white;
+#sighting-page {
+background-image: url("/public/images/background.jpg");
+height: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 }
+
+#sighting-header {
+    color: white;
+} */

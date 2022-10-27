@@ -41,14 +41,29 @@ router.post('/', (req, res) => {
   console.log(req.body);
   console.log('is authenticated?', req.isAuthenticated());
   if(req.isAuthenticated()) {
-    const queryText = `INSERT INTO "sighting" ("planet_id", "user_id")
-                        VALUES ($1, $2) RETURNING "id";`;
-      pool.query(queryText, [req.body.planet_id, req.user.id]).then((result) => {
+    const queryText = `INSERT INTO "sighting" ("planet_id", "user_id", "notes")
+                        VALUES ($1, $2, $3) RETURNING "id";`;
+      pool.query(queryText, [req.body.planet_id, req.user.id, req.body.notes]).then((result) => {
         res.sendStatus(201);
       }).catch((e) => {
         console.log(e);
         res.sendStatus(500);
       });
+  }else {
+    res.sendStatus(403);
+  }
+});
+
+router.delete('/:id', (req, res) => {
+  if(req.isAuthenticated()) {
+    const queryText = 'DELETE FROM "sighting" WHERE "id" = $1 AND "user_id" = $2';
+    pool.query(queryText, [req.params.id, req.user.id])
+    .then((result) => {
+      res.sendStatus(201);
+    }).catch((e) => {
+      console.log(e);
+      res.sendStatus(500);
+    });
   }else {
     res.sendStatus(403);
   }

@@ -5,6 +5,7 @@ function* planetSaga() {
     yield takeLatest('FETCH_PLANET_LIST', fetchAllPlanets);
     yield takeLatest('FETCH_PLANET_DETAILS', fetchPlanetDetails);
     yield takeLatest('LOG_PLANET_SIGHTING', logPlanetSighting);
+    yield takeLatest('DELETE_LOG_ENTRY', entryToDelete);
 }
 
 function* fetchAllPlanets() {
@@ -30,11 +31,23 @@ function* fetchPlanetDetails(action) {
 
 function* logPlanetSighting(action) {
     try {
-        yield axios.post('/api/planets',{planet_id:action.payload})
+        yield axios.post('/api/planets',action.payload)
         console.log(action.payload);
     }catch(e) {
         console.log(e);
         alert('Something went wrong POST')
+    }
+}
+
+function* entryToDelete(action) {
+    try {
+        yield axios.delete(`/api/planets/${action.payload}`);
+        console.log(action.payload);
+        //This next line might be, 'FETCH_SIGHTING_DETAILS'
+        // yield put ({ type: 'FETCH_PLANET_DETAILS'});
+    }catch(e) {
+        console.log(e);
+        alert('Something went wrong DELETE')
     }
 }
 

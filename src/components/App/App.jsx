@@ -69,7 +69,7 @@ function App() {
             <PlanetDetail />
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/sighting">
+          <ProtectedRoute exact path="/sighting/">
             <PlanetSighting />
           </ProtectedRoute>
 
