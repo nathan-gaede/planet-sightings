@@ -32,7 +32,7 @@ function* fetchPlanetDetails(action) {
 function* logPlanetSighting(action) {
     try {
         yield axios.post('/api/planets',action.payload)
-        console.log(action.payload);
+        console.log('What am I sending to POST?',action.payload);
     }catch(e) {
         console.log(e);
         alert('Something went wrong POST')
