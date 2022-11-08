@@ -5,13 +5,16 @@ import { useHistory } from 'react-router-dom';
 
 function PlanetDetail() {
     const planet = useSelector(store => store.planet.selectedPlanet);
+    const planetLogs = useSelector(store => store.planet.logEntryList);
     const { id } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PLANET_DETAILS', payload: id });
+        dispatch({ type: 'FETCH_LOG_ENTRIES', payload: id });
     }, [id])
+
 
     const LogSighting=() => {
         // dispatch ({ type: 'LOG_PLANET_SIGHTING', payload: planet.id});
@@ -28,7 +31,7 @@ function PlanetDetail() {
             <h2>Minutes from Earth at Speed of Light: {planet.travel_time_speed_of_light_minutes}</h2>
             <h2>Time Required to Drive in Years: {planet.travel_time_driving_years}</h2>
             <button value={planet.id} onClick={() => LogSighting()}>Log Planet Sighting</button>
-           
+           {JSON.stringify(planetLogs)}
             
             
         </div>

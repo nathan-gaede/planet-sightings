@@ -15,6 +15,14 @@ const selectedPlanet = (state = {}, action) => {
                 return state;
     }
 }
+
+const logEntryList = (state = [], action) => {
+    if(action.type === 'SET_LOG_DETAILS') {
+        return action.payload;
+    }
+            return state;
+    
+}
 //Repurpose this for saving single sighting detail & editing
 const entryToDelete = (state = {}, action) => {
     console.log(action);
@@ -32,4 +40,5 @@ export default combineReducers({
     planetList,
     selectedPlanet,
     entryToDelete,
+    logEntryList
 });

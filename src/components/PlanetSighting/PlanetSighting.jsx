@@ -15,15 +15,17 @@ function PlanetSighting() {
 
     //getter and setter here using state
     const [logDetails, setLogDetails]=useState('');
+    
     //This may not be needed at all.
-    const entryToDelete = useSelector(store => store.planet.entryToDelete);
+    //const entryToDelete = useSelector(store => store.planet.entryToDelete);
     const planet = useSelector(store => store.planet.selectedPlanet);
+    const [recentLog, setRecentLog]=useState(planet);
     
 
     const deleteEntry= (event) => {
         console.log('in deleteEntry');
-        console.log(entryToDelete);
-        dispatch ({ type: 'DELETE_LOG_ENTRY', payload: entryToDelete})
+        console.log(planet);
+        dispatch ({ type: 'DELETE_LOG_ENTRY', payload: {planet_id:planet.id }})
     }
     const LogSighting=() => {
         console.log('What the heck is',logDetails);
@@ -43,7 +45,7 @@ return (
         <input value={logDetails} onChange={ (e) =>setLogDetails(e.target.value)}placeholder="sighting notes"></input>
         <button onClick={LogSighting}>Log Planet Sighting</button>
 
-        <button onClick={(event) => deleteEntry(entryToDelete)}>Delete Entry</button>
+        <button onClick={(event) => deleteEntry(setRecentLog)}>Delete Entry</button>
         <button>Edit Entry</button>
 
     </div>

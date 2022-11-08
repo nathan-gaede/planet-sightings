@@ -6,6 +6,10 @@ function* planetSaga() {
     yield takeLatest('FETCH_PLANET_DETAILS', fetchPlanetDetails);
     yield takeLatest('LOG_PLANET_SIGHTING', logPlanetSighting);
     yield takeLatest('DELETE_LOG_ENTRY', entryToDelete);
+    //Saga to fetch log details for the planet after sighting 
+    //is logged. Display past view logs when history.goBack is
+    //used to return to Planet Display.
+    yield takeLatest('FETCH_LOG_ENTRIES', fetchLogEntries);
 }
 
 function* fetchAllPlanets() {
@@ -36,6 +40,15 @@ function* logPlanetSighting(action) {
     }catch(e) {
         console.log(e);
         alert('Something went wrong POST')
+    }
+}
+
+function* fetchLogEntries(action) {
+    try {
+        const planetLogs = yield axios.get(`/api/planets/logs/${action.payload}`);
+        yield put ({ type: 'SET_LOG_DETAILS', payload: planetLogs.data});
+    }catch(e) {
+        console.log('Fetch Log Error', e);
     }
 }
 
