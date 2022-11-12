@@ -31,11 +31,25 @@ function PlanetDetail() {
             <h2>Minutes from Earth at Speed of Light: {planet.travel_time_speed_of_light_minutes}</h2>
             <h2>Time Required to Drive in Years: {planet.travel_time_driving_years}</h2>
             <button value={planet.id} onClick={() => LogSighting()}>Log Planet Sighting</button>
-           {JSON.stringify(planetLogs)}
+           {/* {JSON.stringify(planetLogs)}; */}
+           
+           <h2>Sighting Logs</h2>
+           { planetLogs.map(tomato => {
+            return (<div key= { tomato.log }>
+                    <ul>
+                        <li>Sighting Notes (if any): {tomato.notes}</li>
+                        <li>Date & Time Sighted: {tomato.sighting_at}</li>
+                        <button>Delete Log Entry</button>
+                    </ul>
+                
+                </div>
+                );
+           })}
             
-            
+             
         </div>
-    )
-}
+    
+    );
+        }
 
 export default PlanetDetail;
