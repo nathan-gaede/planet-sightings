@@ -69,7 +69,7 @@ router.post('/', (req, res) => {
   }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   if(req.isAuthenticated()) {
     const queryText = `DELETE FROM "sighting" WHERE "id" = $1 AND "user_id" = $2`;
     pool.query(queryText, [req.params.id, req.user.id])

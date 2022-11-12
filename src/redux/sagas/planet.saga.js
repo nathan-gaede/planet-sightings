@@ -24,7 +24,6 @@ function* fetchAllPlanets() {
 
 function* fetchPlanetDetails(action) {
     try {
-        console.log(action.payload.id);
         const planet = yield axios.get(`/api/planets/${action.payload}`);
         console.log('get detail', planet.data);
         yield put ({ type: 'SET_PLANET_DETAILS', payload: planet.data });
@@ -54,10 +53,10 @@ function* fetchLogEntries(action) {
 
 function* entryToDelete(action) {
     try {
-        yield axios.delete(`/api/planets/${action.payload}`);
+        console.log(action);
+        yield axios.delete(`/api/planets/delete/${action.payload}`);
         console.log(action.payload);
-        //This next line might be, 'FETCH_SIGHTING_DETAILS'
-        // yield put ({ type: 'FETCH_PLANET_DETAILS'});
+        yield put ({ type: 'FETCH_LOG_ENTRIES', payload: action.planet.id});
     }catch(e) {
         console.log(e);
         alert('Something went wrong DELETE')

@@ -20,6 +20,13 @@ function PlanetDetail() {
         // dispatch ({ type: 'LOG_PLANET_SIGHTING', payload: planet.id});
         history.push('/sighting/');
     };
+
+    const deleteEntry= (sightingId) => {
+        console.log('in deleteEntry');
+        console.log(sightingId);
+        console.log('What is planet id',planet);
+        dispatch ({ type: 'DELETE_LOG_ENTRY', payload: sightingId, planet });
+    }
     return (
         <div>
             <h2>{planet.name}</h2>
@@ -39,7 +46,7 @@ function PlanetDetail() {
                     <ul>
                         <li>Sighting Notes (if any): {tomato.notes}</li>
                         <li>Date & Time Sighted: {tomato.sighting_at}</li>
-                        <button>Delete Log Entry</button>
+                        <button onClick={(event) => deleteEntry(tomato.id)}>Delete Entry</button>
                     </ul>
                 
                 </div>
