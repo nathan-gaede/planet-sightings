@@ -73,6 +73,10 @@ function App() {
             <PlanetSighting />
           </ProtectedRoute>
 
+          <ProtectedRoute exact path="/edit/:id">
+            <PlanetSighting />
+          </ProtectedRoute>
+
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact

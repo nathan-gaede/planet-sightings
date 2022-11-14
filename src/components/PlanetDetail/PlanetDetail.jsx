@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function PlanetDetail() {
     const planet = useSelector(store => store.planet.selectedPlanet);
@@ -47,6 +48,8 @@ function PlanetDetail() {
                         <li>Sighting Notes (if any): {tomato.notes}</li>
                         <li>Date & Time Sighted: {tomato.sighting_at}</li>
                         <button onClick={(event) => deleteEntry(tomato.id)}>Delete Entry</button>
+                        <br/>
+                        <Link to={`/edit/${ tomato.id }`}> Edit Log Sighting </Link>
                     </ul>
                 
                 </div>

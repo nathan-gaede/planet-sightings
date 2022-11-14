@@ -10,6 +10,8 @@ function* planetSaga() {
     //is logged. Display past view logs when history.goBack is
     //used to return to Planet Display.
     yield takeLatest('FETCH_LOG_ENTRIES', fetchLogEntries);
+    yield takeLatest('FETCH_LOG_ENTRY', fetchLogEntry);
+    yield takeLatest('EDIT_LOG_ENTRY', editLogEntry);
 }
 
 function* fetchAllPlanets() {
@@ -60,6 +62,27 @@ function* entryToDelete(action) {
     }catch(e) {
         console.log(e);
         alert('Something went wrong DELETE')
+    }
+}
+function* fetchLogEntry(action) {
+    try {
+        console.log(action);
+        yield axios.get(`/api/planets/log/${action.payload}`);
+        console.log(action.payload);
+        yield put ({ type: 'SET_LOG_DETAILS', payload: action.payload});
+    }catch(e) {
+        console.log(e);
+        alert('Something went wrong fetching log')
+    }
+}
+
+function* editLogEntry(action) {
+    try {
+        console.log('Testing Edit SAGA',action);
+        yield axios.put(`/api/planets/edit/${action.payload}`,action.payload);
+    }catch(e) {
+        console.log(e);
+        alert('Something went wrong with EDIT');
     }
 }
 
