@@ -25,10 +25,11 @@ function PlanetList() {
 
 return (
    <>
-        <h2>Planet List</h2>
+        <h1>Planet List</h1>
+            <h2>Click Image For More Detail</h2>
         {  planetList.map(planet => {
             return (<div key={ planet.id }>
-              <strong>  { planet.name} </strong>
+              <h2>  { planet.name} </h2>
                 <img onClick={(e) => displayDetails(planet) }src={planet.planet_image} width="300" height="300" alt={planet.name} />
          {/* {JSON.stringify(planetList)} */}
         </div>

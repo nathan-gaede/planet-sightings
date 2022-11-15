@@ -30,7 +30,7 @@ function PlanetDetail() {
     }
     return (
         <div>
-            <h2>{planet.name}</h2>
+            <h1>{planet.name}</h1>
             <h2>Planet Type: {planet.description}</h2>
             <img src={planet.planet_image}/>
             <h2>Kilometers from Sun: {planet.distance_from_sun}</h2>
