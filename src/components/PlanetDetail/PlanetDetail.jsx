@@ -35,6 +35,7 @@ function PlanetDetail() {
             <img src={planet.planet_image}/>
             <h2>Kilometers from Sun: {planet.distance_from_sun}</h2>
             <h2>Known Moons: {planet.known_moons}</h2>
+            {planet.planet_opposition_dates && <h2>Next Opposition Date: {planet.planet_opposition_dates}</h2>}
             <h2>Visible without Telescope: {planet.visible_without_telescope ? <span>true</span>: <span>false</span>}</h2>
             <h2>Minutes from Earth at Speed of Light: {planet.travel_time_speed_of_light_minutes}</h2>
             <h2>Time Required to Drive in Years: {planet.travel_time_driving_years}</h2>
